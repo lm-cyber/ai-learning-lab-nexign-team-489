@@ -6,8 +6,20 @@ authors = [" Nasibullin Alan Maratovich <alan.nasibyllin@yandex.ru>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.11"
+python = "3.11.10"
+torch = {version = "^2.6.0+cpu", source = "pytorch_cpu"}
+fastapi = "^0.115.8"
+pandas = "^2.2.3"
+transformers = "^4.48.3"
+uvicorn = "^0.34.0"
+python-multipart = "^0.0.20"
+openpyxl = "^3.1.5"
 
+
+[[tool.poetry.source]]
+name = "pytorch_cpu"
+url = "https://download.pytorch.org/whl/cpu"
+priority = "supplemental"
 
 [build-system]
 requires = ["poetry-core"]
