@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  web:
+    build: backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment: #TODO .env
+      - DATABASE_URL=postgresql://user:password@db:5432/dbname
+
+  db:
+    image: postgres:15
+    restart: always
+    environment: # add .env
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dbname
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+# fix affter 
+  # frontend:
+  #   build: frontend
+  #   ports:
+  #     - "7860:7860"
+  #   # depends_on:
+  #   #   - web
+  #   environment:
+  #     - API_URL=http://web:8000
+
+
+volumes:
+  postgres_data:
+
+
+# docker run -d \           
+#   -e POSTGRES_USER=user \
+#   -e POSTGRES_PASSWORD=password \
+#   -e POSTGRES_DB=dbname \
+#   -p 5432:5432 \
+#   postgres:15
